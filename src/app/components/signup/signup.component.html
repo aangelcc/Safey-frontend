@@ -1,0 +1,42 @@
+<h1>Sign up</h1>
+<form>
+  <div>
+    <label for="personal-id">Personal Id: </label>
+    <input type="text" id="personal-id" [(ngModel)] = "personalId" name="personal-id">
+  </div>
+  <div>
+    <label for="name">Name: </label>
+    <input type="text" id="name" [(ngModel)] = "name" name="name">
+  </div>
+  <div>
+    <label for="surname">Surname: </label>
+    <input type="text" id="surname" [(ngModel)] = "surname" name="surname">
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input type="text" id="email" [(ngModel)] = "email" name="email">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password" id="password" [(ngModel)] = "password" name="password">
+  </div>
+  <div>
+    <label for="rePassword">Repeat Password: </label>
+    <input type="password" id="repassword" [(ngModel)] = "rePassword" name="rePassword">
+  </div>
+  <div>
+    <label for="birthday">Birthday: </label>
+    <input type="date" id="birthday" [(ngModel)] = "birthday" name="birthday">
+  </div>
+  <div>
+    <label>Gender: </label>
+    <br/>
+    <input type="radio" [(ngModel)] = "gender" name="gender" value="M"> Male<br>
+    <input type="radio" [(ngModel)] = "gender" name="gender" value="F"> Female<br>
+  </div>
+
+  <button type="submit" (click)="signup()">Sign Up</button>
+</form>
+
+
+<p>{{ message }}</p>

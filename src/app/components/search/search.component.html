@@ -1,0 +1,30 @@
+<h1>Search Products</h1>
+<form>
+  <input type="text" id="keyword" [(ngModel)] = "keyword" name="keyword">
+  <button type="submit" (click)="searchProduct(1)">Search</button>
+</form>
+
+<h1>Products</h1>
+<div *ngFor="let product of products">
+  <h4><a routerLink="/product/{{ product.id }}">{{ product.name }}</a></h4>
+  <p>Description: {{ product.description }}</p>
+  <p>Price: {{ product.price }}</p>
+</div>
+
+<h1>Page Info</h1>
+<p>Current Page: {{ currentPage }}</p>
+<p>Total: {{ pages.length }}</p>
+<p>Previous Page: {{ previousPageUrl }}</p>
+<p>Next Page: {{ nextPageUrl }}</p>
+
+<div *ngIf="currentPage-1 > 0">
+  <button (click)="searchProduct(currentPage-1)">Previous</button>
+</div>
+
+<div *ngFor="let i of pages">
+  <button (click)="searchProduct(i+1)">{{ i+1 }}</button>
+</div>
+
+<div *ngIf="currentPage+1 <= numberOfPages">
+  <button (click)="searchProduct(currentPage+1)">Next</button>
+</div>

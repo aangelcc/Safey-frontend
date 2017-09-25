@@ -1,0 +1,35 @@
+<h2>Name: {{ product.name }}</h2>
+<p>Id: {{ product.id }}</p>
+<p>Description: {{ product.description }}</p>
+<p>Price: {{ product.price }}</p>
+<p>Images: {{ product.images }}</p>
+<p>Stock: {{ product.stock }}</p>
+<p>Rating: {{ product.rating }}</p>
+<p>Store Id: {{ product.store_id }}</p>
+
+<h2>Comments:</h2>
+<div *ngFor="let comment of comments">
+  <h4>User {{ comment.user_id }}</h4>
+  <p>{{ comment.comment }}</p>
+  <p>Comment Rating: {{ comment.comment_rating }}</p>
+  <p>Product Rating: {{ comment.product_rating }}</p>
+  <br/>
+</div>
+
+<h1>Page Info</h1>
+<p>Current Page: {{ currentPage }}</p>
+<p>Total: {{ pages.length }}</p>
+<p>Previous Page: {{ previousPageUrl }}</p>
+<p>Next Page: {{ nextPageUrl }}</p>
+
+<div *ngIf="currentPage-1 > 0">
+  <button (click)="getProductComment(currentPage-1)">Previous</button>
+</div>
+
+<div *ngFor="let i of pages">
+  <button (click)="getProductComment(i+1)">{{ i+1 }}</button>
+</div>
+
+<div *ngIf="currentPage+1 <= numberOfPages">
+  <button (click)="getProductComment(currentPage+1)">Next</button>
+</div>
