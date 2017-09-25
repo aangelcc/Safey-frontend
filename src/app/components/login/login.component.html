@@ -1,14 +1,19 @@
-<h1>Login</h1>
+<div class="container">
+
+<div class="jumbotron">
+  <h1>Login</h1>
+</div>
+
 <form>
-  <div>
+  <div class="form-group">
     <label for="email">Email: </label>
     <input type="text" id="email" [(ngModel)] = "email" name="email">
   </div>
-  <div>
+  <div class="form-group">
     <label for="password">Password: </label>
     <input type="password" id="password" [(ngModel)] = "password" name="password">
   </div>
-  <button type="submit" (click)="login()">Login</button>
+  <button type="submit" class="btn btn-default" (click)="login()">Login</button>
 </form>
 
 <p>{{ email }}</p>
@@ -16,3 +21,4 @@
 <p>{{ token }}</p>
 
 <a routerLink="/signup">Sign up</a>
+</div>
