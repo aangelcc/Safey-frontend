@@ -21,7 +21,7 @@ import { CommentService } from './services/comment.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'search', component: SearchComponent },
+  {path: 'search/:keyword/:page', component: SearchComponent },
   {path: 'login', component: LoginComponent },
   {path: 'about', component: AboutComponent },
   {path: 'signup', component: SignupComponent },

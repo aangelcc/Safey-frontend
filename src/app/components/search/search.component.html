@@ -2,10 +2,6 @@
   <div class="jumbotron">
     <h1>Search Products</h1>
   </div>
-  <form>
-    <input type="text" id="keyword" [(ngModel)]="keyword" name="keyword">
-    <button type="submit" (click)="searchProduct(1)">Search</button>
-  </form>
 
   <h1>Products</h1>
   <hr>
@@ -23,8 +19,8 @@
   <p>Next Page: {{ nextPageUrl }}</p>
 
   <ul class="pagination" *ngFor="let i of pages">
-    <li *ngIf="currentPage-1 > 0 && i==0" style="cursor:pointer"><a (click)="searchProduct(currentPage-1)">previous</a></li>
-    <li style="cursor:pointer"><a (click)="searchProduct(i+1)">{{ i+1 }}</a></li>
-    <li *ngIf="currentPage+1 <= numberOfPages && i==pages.length-1" style="cursor:pointer"><a (click)="searchProduct(currentPage+1)">next</a></li>
+    <li *ngIf="currentPage-1 > 0 && i==0" style="cursor:pointer"><a (click)="search(currentPage-1)">previous</a></li>
+    <li style="cursor:pointer"><a (click)="search(i+1)">{{ i+1 }}</a></li>
+    <li *ngIf="currentPage+1 <= numberOfPages && i==pages.length-1" style="cursor:pointer"><a (click)="search(currentPage+1)">next</a></li>
   </ul>
 </div>

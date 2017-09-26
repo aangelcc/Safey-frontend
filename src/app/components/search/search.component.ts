@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -11,6 +12,7 @@ export class SearchComponent implements OnInit {
 
   products: Product[];
   keyword: string;
+  page: number;
   currentPage: number;
   lastPage: number;
   pages: number[];
@@ -18,17 +20,26 @@ export class SearchComponent implements OnInit {
   nextPageUrl: string;
   previousPageUrl: string;
 
-  constructor(private productService: ProductService) {
-
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {
+    route.params.subscribe(val => {
+      this.ngOnInit();
+    });
   }
 
   ngOnInit() {
-    this.keyword = '';
-    this.searchProduct(1);
+    this.keyword = this.route.snapshot.params['keyword'];
+    this.page = Number(this.route.snapshot.params['page']);
+    this.searchProduct();
   }
 
-  searchProduct(page: number) {
-    this.productService.getProducts(this.keyword, page).subscribe((products) => {
+  search(page: number) {
+    this.router.navigateByUrl('search/' + this.keyword + '/' + page);
+    this.page = page;
+    this.searchProduct();
+  }
+
+  searchProduct() {
+    this.productService.getProducts(this.keyword, this.page).subscribe((products) => {
       this.products = products['data'];
       this.currentPage = products['current_page'];
       this.lastPage = products['last_page'];
