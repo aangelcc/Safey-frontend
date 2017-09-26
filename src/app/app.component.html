@@ -8,6 +8,9 @@
       <li *ngIf="!user"><a routerLink="/login">Login</a></li>
       <li><a routerLink="/about">About</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a routerLink="/profile">{{ user.name }}</a></li>
+    </ul>
   </div>
 </nav>
 {{user | json}}

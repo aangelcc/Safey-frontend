@@ -9,6 +9,7 @@ export class UserService {
 
     // Where the token is saved to be used across requests
     private token: string;
+    user: User;
 
     // Observable object to publish user data
     private observableUser: Subject<User>;
@@ -45,7 +46,7 @@ export class UserService {
 
     publishUser(user: User) {
         this.observableUser.next(user);
-
+        this.user = user;
         // End observability
         this.observableUser.complete();
     }
