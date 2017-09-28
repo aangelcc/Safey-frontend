@@ -35,7 +35,6 @@ export class SearchComponent implements OnInit {
   search(page: number) {
     this.router.navigateByUrl('search/' + this.keyword + '/' + page);
     this.page = page;
-    this.searchProduct();
   }
 
   searchProduct() {
