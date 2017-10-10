@@ -8,7 +8,7 @@ import {User} from "../models/user";
 export class UserService {
 
     // Where the token is saved to be used across requests
-    private token: string;
+    token: string;
     user: User;
 
     // Observable object to publish user data

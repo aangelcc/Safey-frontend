@@ -18,6 +18,27 @@
     <hr>
   </div>
 
+  <div *ngIf="token">
+  <h2>Make a comment:</h2>
+  <form (ngSubmit)="sendComment()">
+    <div class="form-group">
+      <label for="comment">Comment: </label>
+      <textarea class="form-control" rows="5" id="comment"[(ngModel)]="comment" name="comment"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="product_rating">Product Rating:</label>
+      <select id="product_rating" [(ngModel)]="product_rating" value="{{ product_rating }}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <input type="submit" class="btn btn-default" value="Send">
+  </form>
+  </div>
+
   <h1>Page Info</h1>
   <p>Current Page: {{ currentPage }}</p>
   <p>Total: {{ pages.length }}</p>

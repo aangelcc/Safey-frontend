@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { CommentService } from '../../services/comment.service';
 import { Product } from '../../interfaces/product';
 import { Comment } from '../../interfaces/comment';
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-product',
@@ -20,13 +22,22 @@ export class ProductComponent implements OnInit {
   numberOfPages: number;
   nextPageUrl: string;
   previousPageUrl: string;
-  constructor(route: ActivatedRoute, private productService: ProductService, private commentService: CommentService) {
+  token: string = null;
+  user: User = null;
+  comment: string;
+  product_rating: number;
+
+  constructor(route: ActivatedRoute, private productService: ProductService, private commentService: CommentService, private userService: UserService) {
     this.productId = Number(route.snapshot.params['id']);
+    this.token = userService.token;
+    this.user = userService.user;
   }
 
   ngOnInit() {
     this.getProductInfo();
     this.getProductComment(1);
+    this.comment = '';
+    this.product_rating = 5;
   }
 
   getProductInfo() {
@@ -44,6 +55,13 @@ export class ProductComponent implements OnInit {
         this.numberOfPages = this.pages.length;
         this.nextPageUrl = comments['next_page_url'];
         this.previousPageUrl = comments['prev_page_url'];
+    });
+  }
+
+  sendComment() {
+    console.log('holaaaaaa');
+    this.commentService.makeComment(this.comment, this.user.id, this.product_rating, this.productId, this.token).subscribe((res) => {
+      console.log(res['message']);
     });
   }
 
